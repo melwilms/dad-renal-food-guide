@@ -48,9 +48,6 @@
     text-align: center;
     border-bottom: 3px solid var(--line);
     background: var(--cream);
-    position: sticky;
-    top: 0;
-    z-index: 10;
   }
 
   header h1 {
@@ -69,7 +66,10 @@
 
   .search-wrap {
     padding: 16px 16px 0;
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--cream);
   }
 
   #search-input {
@@ -523,6 +523,7 @@
     if (!q) {
       resultsBox.classList.remove('show');
       resultsBox.innerHTML = '';
+      requestAnimationFrame(setStickyOffsets);
       return;
     }
 
@@ -531,6 +532,7 @@
     if (matches.length === 0) {
       resultsBox.innerHTML = '<div class="no-results">No match — ask Melissa if you\'re not sure.</div>';
       resultsBox.classList.add('show');
+      requestAnimationFrame(setStickyOffsets);
       return;
     }
 
@@ -542,6 +544,7 @@
       </div>`;
     }).join('');
     resultsBox.classList.add('show');
+    requestAnimationFrame(setStickyOffsets);
   }
 
   function showTab(tab) {
@@ -553,10 +556,10 @@
   }
 
   function setStickyOffsets() {
-    const header = document.querySelector('header');
+    const searchWrap = document.querySelector('.search-wrap');
     const tabs = document.querySelector('.tabs');
-    if (header && tabs) {
-      tabs.style.top = header.offsetHeight + 'px';
+    if (searchWrap && tabs) {
+      tabs.style.top = searchWrap.offsetHeight + 'px';
     }
   }
   window.addEventListener('load', setStickyOffsets);
