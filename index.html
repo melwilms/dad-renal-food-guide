@@ -44,24 +44,17 @@
   }
 
   header {
-    padding: 24px 20px 18px;
+    padding: 20px 20px 16px;
     text-align: center;
     border-bottom: 3px solid var(--line);
     background: var(--cream);
   }
 
   header h1 {
-    font-size: 2.1rem;
-    margin: 0 0 4px;
+    font-size: 1.8rem;
+    margin: 0;
     font-weight: 800;
     letter-spacing: -0.01em;
-  }
-
-  header p {
-    margin: 0;
-    font-size: 1.05rem;
-    color: var(--muted);
-    font-weight: 500;
   }
 
   .search-wrap {
@@ -72,10 +65,30 @@
     background: var(--cream);
   }
 
+  .search-box {
+    position: relative;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    pointer-events: none;
+  }
+
+  .search-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: var(--muted);
+  }
+
   #search-input {
     width: 100%;
-    padding: 18px 18px;
-    font-size: 1.15rem;
+    padding: 18px 52px 18px 52px;
+    font-size: 1rem;
     font-family: inherit;
     border: 3px solid var(--line);
     border-radius: 14px;
@@ -85,17 +98,46 @@
     min-height: 60px;
   }
 
+  .search-clear {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: var(--line);
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+  }
+
+  .search-clear.show { display: flex; }
+
   #search-input:focus {
     border-color: var(--sage);
   }
 
   #search-results {
     display: none;
-    margin-top: 10px;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
     background: var(--white);
     border: 3px solid var(--line);
     border-radius: 14px;
-    overflow: hidden;
+    overflow-y: auto;
+    max-height: 46vh;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    -webkit-overflow-scrolling: touch;
   }
 
   #search-results.show { display: block; }
@@ -107,8 +149,14 @@
     gap: 12px;
     padding: 16px 18px;
     border-bottom: 2px solid var(--line);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 600;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .result-row:active {
+    background: var(--sage-light);
   }
 
   .result-row:last-child { border-bottom: none; }
@@ -119,7 +167,7 @@
     flex-shrink: 0;
     padding: 8px 14px;
     border-radius: 999px;
-    font-size: 0.9rem;
+    font-size: 0.78rem;
     font-weight: 800;
     color: var(--white);
     white-space: nowrap;
@@ -131,9 +179,26 @@
 
   .no-results {
     padding: 18px;
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--muted);
+  }
+
+  .text-melissa-btn {
+    display: block;
+    margin: 0 18px 18px;
+    padding: 14px;
+    text-align: center;
+    background: var(--sage);
+    color: var(--white);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .text-melissa-btn:active {
+    opacity: 0.85;
   }
 
   .tabs {
@@ -148,10 +213,10 @@
 
   .tab {
     flex: 1;
-    padding: 16px 6px;
+    padding: 14px 4px;
     text-align: center;
     font-family: inherit;
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     font-weight: 800;
     border-radius: 14px;
     border: 3px solid var(--line);
@@ -160,6 +225,7 @@
     color: var(--muted);
     transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     min-height: 56px;
+    white-space: nowrap;
   }
 
   .tab.active[data-tab="daily"] { background: var(--sage); border-color: var(--sage); color: var(--white); }
@@ -170,7 +236,7 @@
     margin: 18px 16px 0;
     padding: 18px 20px;
     border-radius: 14px;
-    font-size: 1.15rem;
+    font-size: 1rem;
     font-weight: 700;
     line-height: 1.4;
     display: none;
@@ -183,14 +249,14 @@
 
   .legend {
     display: flex;
-    gap: 20px;
-    padding: 14px 20px 0;
-    font-size: 1rem;
-    font-weight: 600;
+    gap: 14px;
+    padding: 14px 16px 0;
+    font-size: 0.85rem;
+    font-weight: 700;
     color: var(--muted);
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
-  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
 
   main {
     padding: 8px 16px 20px;
@@ -204,7 +270,7 @@
   }
 
   .group-title {
-    font-size: 0.95rem;
+    font-size: 0.82rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -223,7 +289,7 @@
     border: 3px solid var(--line);
     border-radius: 999px;
     padding: 13px 20px;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--ink);
     position: relative;
@@ -233,12 +299,22 @@
   .panel[data-tab="moderate"] .item { border-color: #D9AE4E; }
   .panel[data-tab="occasional"] .item { border-color: #D68C79; }
 
+  .item.jump-highlight {
+    animation: jumpFlash 1.8s ease;
+  }
+
+  @keyframes jumpFlash {
+    0% { box-shadow: 0 0 0 5px #C99A3D; }
+    70% { box-shadow: 0 0 0 5px #C99A3D; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+
   .note {
     margin: 26px 4px 0;
     padding: 18px;
     background: var(--white);
     border-radius: 14px;
-    font-size: 1.02rem;
+    font-size: 0.87rem;
     line-height: 1.55;
     color: var(--muted);
     border: 3px solid var(--line);
@@ -254,11 +330,19 @@
     width: 26px;
     height: 26px;
     border-radius: 6px;
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     font-weight: 900;
     margin-left: 8px;
     vertical-align: middle;
     color: var(--white);
+    flex-shrink: 0;
+  }
+
+  .legend .badge {
+    width: 20px;
+    height: 20px;
+    font-size: 0.85rem;
+    margin-left: 0;
   }
   .badge.heart { background: var(--clay); }
   .badge.sugar { background: var(--gold); }
@@ -268,12 +352,17 @@
 
 <header>
   <h1>What Can I Eat</h1>
-  <p>A simple guide for your meals</p>
 </header>
 
 <div class="search-wrap">
-  <input type="text" id="search-input" placeholder="Type a food to look up…" autocomplete="off" oninput="onSearch()">
-  <div id="search-results"></div>
+  <div class="search-box">
+    <span class="search-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    </span>
+    <input type="text" id="search-input" placeholder="Type a food to look up…" autocomplete="off" oninput="onSearch()" onfocus="onSearch()">
+    <button type="button" class="search-clear" id="search-clear" onclick="clearSearch()" aria-label="Clear search">✕</button>
+    <div id="search-results"></div>
+  </div>
 </div>
 
 
@@ -305,49 +394,49 @@
     <div class="group">
       <div class="group-title">Proteins</div>
       <div class="items">
-        <span class="item">Cod</span><span class="item">Tilapia</span><span class="item">Chicken breast</span><span class="item">Ground turkey</span><span class="item">Egg whites</span>
+        <span class="item">Cod</span><span class="item">Tilapia</span><span class="item">Chicken breast</span><span class="item">Turkey breast (roasted, plain)</span><span class="item">Ground turkey</span><span class="item">Egg whites</span><span class="item">Liquid egg substitute</span>
       </div>
     </div>
     <div class="group">
       <div class="group-title">Vegetables</div>
       <div class="items">
-        <span class="item">Cauliflower</span><span class="item">Cabbage</span><span class="item">Green beans</span><span class="item">Zucchini</span><span class="item">Bell peppers</span><span class="item">Cucumber</span><span class="item">Onion</span><span class="item">Garlic</span><span class="item">Romaine</span><span class="item">Radicchio</span><span class="item">Radishes</span><span class="item">Carrots</span><span class="item">Eggplant</span>
+        <span class="item">Cauliflower</span><span class="item">Cabbage</span><span class="item">Green beans</span><span class="item">Zucchini</span><span class="item">Yellow squash</span><span class="item">Bell peppers</span><span class="item">Cucumber</span><span class="item">Celery</span><span class="item">Onion</span><span class="item">Garlic</span><span class="item">Romaine</span><span class="item">Iceberg lettuce</span><span class="item">Radicchio</span><span class="item">Radishes</span><span class="item">Snow peas</span><span class="item">Carrots</span><span class="item">Eggplant</span>
       </div>
     </div>
     <div class="group">
       <div class="group-title">Fruits</div>
       <div class="items">
-        <span class="item">Apples</span><span class="item">Berries</span><span class="item">Grapes<span class="badge sugar">!</span></span><span class="item">Cherries</span><span class="item">Pineapple<span class="badge sugar">!</span></span><span class="item">Peaches</span><span class="item">Plums</span>
+        <span class="item">Apples</span><span class="item">Berries</span><span class="item">Cranberries (fresh)</span><span class="item">Grapes<span class="badge sugar">!</span></span><span class="item">Cherries</span><span class="item">Pineapple<span class="badge sugar">!</span></span><span class="item">Peaches</span><span class="item">Plums</span>
       </div>
     </div>
     <div class="group">
-      <div class="group-title">Grains</div>
+      <div class="group-title">Grains & breads</div>
       <div class="items">
-        <span class="item">White rice</span><span class="item">Regular pasta</span><span class="item">Couscous</span><span class="item">Pearl couscous</span><span class="item">Rice crackers</span>
+        <span class="item">White rice</span><span class="item">Regular pasta</span><span class="item">Couscous</span><span class="item">Pearl couscous</span><span class="item">White bread</span><span class="item">Plain bagel</span><span class="item">Corn tortillas</span><span class="item">Flour tortillas</span><span class="item">Cream of wheat</span><span class="item">Grits</span><span class="item">Rice crackers</span><span class="item">Unsalted crackers</span>
       </div>
     </div>
     <div class="group">
       <div class="group-title">Dairy & fats</div>
       <div class="items">
-        <span class="item">Olive oil</span><span class="item">Unsalted butter</span><span class="item">Cream cheese</span><span class="item">Sour cream</span>
+        <span class="item">Olive oil</span><span class="item">Coconut oil</span><span class="item">Unsalted butter</span><span class="item">Cream cheese</span><span class="item">Sour cream</span><span class="item">Mayonnaise</span>
       </div>
     </div>
     <div class="group">
       <div class="group-title">Flavor</div>
       <div class="items">
-        <span class="item">Lemon</span><span class="item">Fresh herbs</span><span class="item">Ginger</span><span class="item">Curry powder</span><span class="item">Turmeric</span><span class="item">Cumin</span><span class="item">Smoked paprika</span><span class="item">Chili flake</span><span class="item">Hot sauce</span><span class="item">Salt-free spice blends</span><span class="item">Salt-free taco seasoning</span>
+        <span class="item">Lemon</span><span class="item">Vinegar</span><span class="item">Fresh herbs</span><span class="item">Oregano</span><span class="item">Basil</span><span class="item">Rosemary</span><span class="item">Thyme</span><span class="item">Bay leaf</span><span class="item">Black pepper</span><span class="item">Garlic powder</span><span class="item">Onion powder</span><span class="item">Cinnamon</span><span class="item">Nutmeg</span><span class="item">Vanilla extract</span><span class="item">Ginger</span><span class="item">Curry powder</span><span class="item">Turmeric</span><span class="item">Cumin</span><span class="item">Smoked paprika</span><span class="item">Chili flake</span><span class="item">Dijon mustard</span><span class="item">Hot sauce</span><span class="item">Salt-free spice blends</span><span class="item">Salt-free taco seasoning</span>
       </div>
     </div>
     <div class="group">
       <div class="group-title">Sweets</div>
       <div class="items">
-        <span class="item">Fresh berries</span><span class="item">Applesauce</span><span class="item">Frozen grapes<span class="badge sugar">!</span></span><span class="item">Angel food cake<span class="badge sugar">!</span></span>
+        <span class="item">Fresh berries</span><span class="item">Applesauce</span><span class="item">Frozen grapes<span class="badge sugar">!</span></span><span class="item">Angel food cake<span class="badge sugar">!</span></span><span class="item">Sugar-free gelatin</span>
       </div>
     </div>
     <div class="group">
       <div class="group-title">Drinks</div>
       <div class="items">
-        <span class="item">Water — 2.5L a day</span><span class="item">Herbal tea</span>
+        <span class="item">Water — 2.5L a day</span><span class="item">Herbal tea</span><span class="item">Sparkling water</span>
       </div>
     </div>
     <div class="note">
@@ -381,7 +470,7 @@
     <div class="group">
       <div class="group-title">Dairy</div>
       <div class="items">
-        <span class="item">Heavy cream</span><span class="item">Mascarpone</span><span class="item">Ricotta</span>
+        <span class="item">Heavy cream</span><span class="item">Mascarpone</span><span class="item">Ricotta</span><span class="item">Parmesan (small portion)</span>
       </div>
     </div>
     <div class="group">
@@ -418,13 +507,13 @@
     <div class="group">
       <div class="group-title">Nuts, seeds & legumes</div>
       <div class="items">
-        <span class="item">Almonds</span><span class="item">Cashews</span><span class="item">Pistachios</span><span class="item">Peanuts</span><span class="item">Peanut butter</span><span class="item">Hazelnuts</span><span class="item">Kidney beans</span><span class="item">Lentils</span><span class="item">Split peas</span>
+        <span class="item">Almonds</span><span class="item">Cashews</span><span class="item">Pistachios</span><span class="item">Peanuts</span><span class="item">Peanut butter</span><span class="item">Hazelnuts</span><span class="item">Mixed nuts</span><span class="item">Beans</span><span class="item">Kidney beans</span><span class="item">Lentils</span><span class="item">Split peas</span>
       </div>
     </div>
     <div class="group">
       <div class="group-title">Fruits</div>
       <div class="items">
-        <span class="item">Bananas</span><span class="item">Oranges<span class="badge sugar">!</span></span><span class="item">Cantaloupe</span><span class="item">Honeydew</span><span class="item">Dried fruit<span class="badge sugar">!</span></span><span class="item">Dates<span class="badge sugar">!</span></span><span class="item">Avocado</span>
+        <span class="item">Bananas</span><span class="item">Oranges<span class="badge sugar">!</span></span><span class="item">Cantaloupe</span><span class="item">Honeydew</span><span class="item">Dried fruit<span class="badge sugar">!</span></span><span class="item">Dried cranberries<span class="badge sugar">!</span></span><span class="item">Dates<span class="badge sugar">!</span></span><span class="item">Avocado</span>
       </div>
     </div>
     <div class="group">
@@ -436,7 +525,7 @@
     <div class="group">
       <div class="group-title">Sweets</div>
       <div class="items">
-        <span class="item">Small piece of pie or cake<span class="badge sugar">!</span></span><span class="item">Dark chocolate (a few squares)<span class="badge sugar">!</span></span><span class="item">Small ice cream<span class="badge sugar">!</span></span>
+        <span class="item">Small piece of pie or cake<span class="badge sugar">!</span></span><span class="item">Dark chocolate (a few squares)<span class="badge sugar">!</span></span><span class="item">Small ice cream<span class="badge sugar">!</span></span><span class="item">Graham crackers<span class="badge sugar">!</span></span>
       </div>
     </div>
     <div class="group">
@@ -451,7 +540,7 @@
   </div>
 
   <div class="note">
-    <strong>A note from Melissa:</strong> This is a general guide, not a medical plan. If something isn't sure or you're not sure how much — just call me before eating a big portion. Love you, Dad.
+    <strong>A note from Melissa:</strong> If something is not on this list or you're not sure how much is ok — just call me. Love you, Dad. ❤️
   </div>
 
 </main>
@@ -460,24 +549,37 @@
   const FOOD_DATA = [
     // Every day
     {name:"Cod", tier:"daily"}, {name:"Tilapia", tier:"daily"}, {name:"Chicken breast", tier:"daily"},
-    {name:"Ground turkey", tier:"daily"}, {name:"Egg whites", tier:"daily"},
+    {name:"Turkey breast", tier:"daily"}, {name:"Ground turkey", tier:"daily"}, {name:"Egg whites", tier:"daily"},
+    {name:"Liquid egg substitute", tier:"daily"},
     {name:"Cauliflower", tier:"daily"}, {name:"Cabbage", tier:"daily"}, {name:"Green beans", tier:"daily"},
-    {name:"Zucchini", tier:"daily"}, {name:"Bell peppers", tier:"daily"}, {name:"Cucumber", tier:"daily"},
-    {name:"Onion", tier:"daily"}, {name:"Garlic", tier:"daily"}, {name:"Romaine", tier:"daily"},
-    {name:"Radicchio", tier:"daily"}, {name:"Radishes", tier:"daily"}, {name:"Carrots", tier:"daily"},
+    {name:"Zucchini", tier:"daily"}, {name:"Yellow squash", tier:"daily"}, {name:"Bell peppers", tier:"daily"},
+    {name:"Cucumber", tier:"daily"}, {name:"Celery", tier:"daily"}, {name:"Onion", tier:"daily"},
+    {name:"Garlic", tier:"daily"}, {name:"Romaine", tier:"daily"},
+    {name:"Iceberg lettuce", tier:"daily"}, {name:"Radicchio", tier:"daily"}, {name:"Radishes", tier:"daily"},
+    {name:"Snow peas", tier:"daily"}, {name:"Carrots", tier:"daily"},
     {name:"Eggplant", tier:"daily"}, {name:"Apples", tier:"daily"}, {name:"Berries", tier:"daily"},
+    {name:"Cranberries (fresh)", tier:"daily"},
     {name:"Grapes", tier:"daily", flags:["sugar"]}, {name:"Cherries", tier:"daily"},
     {name:"Pineapple", tier:"daily", flags:["sugar"]}, {name:"Peaches", tier:"daily"}, {name:"Plums", tier:"daily"},
     {name:"White rice", tier:"daily"}, {name:"Regular pasta", tier:"daily"}, {name:"Couscous", tier:"daily"},
-    {name:"Pearl couscous", tier:"daily"}, {name:"Rice crackers", tier:"daily"},
-    {name:"Olive oil", tier:"daily"}, {name:"Unsalted butter", tier:"daily"}, {name:"Cream cheese", tier:"daily"},
-    {name:"Sour cream", tier:"daily"}, {name:"Lemon", tier:"daily"}, {name:"Fresh herbs", tier:"daily"},
+    {name:"Pearl couscous", tier:"daily"}, {name:"White bread", tier:"daily"}, {name:"Plain bagel", tier:"daily"},
+    {name:"Corn tortillas", tier:"daily"}, {name:"Flour tortillas", tier:"daily"}, {name:"Cream of wheat", tier:"daily"},
+    {name:"Grits", tier:"daily"}, {name:"Rice crackers", tier:"daily"}, {name:"Unsalted crackers", tier:"daily"},
+    {name:"Olive oil", tier:"daily"}, {name:"Coconut oil", tier:"daily"}, {name:"Unsalted butter", tier:"daily"},
+    {name:"Cream cheese", tier:"daily"}, {name:"Sour cream", tier:"daily"}, {name:"Mayonnaise", tier:"daily"},
+    {name:"Lemon", tier:"daily"}, {name:"Vinegar", tier:"daily"}, {name:"Fresh herbs", tier:"daily"},
+    {name:"Oregano", tier:"daily"}, {name:"Basil", tier:"daily"}, {name:"Rosemary", tier:"daily"},
+    {name:"Thyme", tier:"daily"}, {name:"Bay leaf", tier:"daily"}, {name:"Black pepper", tier:"daily"},
+    {name:"Garlic powder", tier:"daily"}, {name:"Onion powder", tier:"daily"}, {name:"Cinnamon", tier:"daily"},
+    {name:"Nutmeg", tier:"daily"}, {name:"Vanilla extract", tier:"daily"},
     {name:"Ginger", tier:"daily"}, {name:"Curry powder", tier:"daily"}, {name:"Turmeric", tier:"daily"},
     {name:"Cumin", tier:"daily"}, {name:"Smoked paprika", tier:"daily"}, {name:"Chili flake", tier:"daily"},
+    {name:"Dijon mustard", tier:"daily"},
     {name:"Hot sauce", tier:"daily"}, {name:"Salt-free spice blends", tier:"daily"}, {name:"Salt-free taco seasoning", tier:"daily"},
-    {name:"Herbal tea", tier:"daily"}, {name:"Water", tier:"daily"}, {name:"Fresh berries", tier:"daily"},
+    {name:"Herbal tea", tier:"daily"}, {name:"Water", tier:"daily"}, {name:"Sparkling water", tier:"daily"},
+    {name:"Fresh berries", tier:"daily"},
     {name:"Applesauce", tier:"daily"}, {name:"Frozen grapes", tier:"daily", flags:["sugar"]},
-    {name:"Angel food cake", tier:"daily", flags:["sugar"]},
+    {name:"Angel food cake", tier:"daily", flags:["sugar"]}, {name:"Sugar-free gelatin", tier:"daily"},
 
     // Sometimes
     {name:"Shrimp", tier:"moderate", flags:["heart"]}, {name:"Salmon", tier:"moderate"},
@@ -490,24 +592,28 @@
     {name:"Pumpkin seeds", tier:"moderate"}, {name:"Hummus", tier:"moderate", flags:["heart"]},
     {name:"Canned chickpeas", tier:"moderate", flags:["heart"]}, {name:"Black-eyed peas", tier:"moderate", flags:["heart"]},
     {name:"Heavy cream", tier:"moderate"}, {name:"Mascarpone", tier:"moderate"}, {name:"Ricotta", tier:"moderate"},
+    {name:"Parmesan (small portion)", tier:"moderate"},
     {name:"Air-popped popcorn", tier:"moderate"}, {name:"Unsalted pretzels", tier:"moderate"},
     {name:"Sorbet", tier:"moderate", flags:["sugar"]}, {name:"Rice krispie treat", tier:"moderate", flags:["sugar"]},
 
     // Rarely
     {name:"Chicken apple sausage", tier:"occasional", flags:["heart"]}, {name:"Cheddar", tier:"occasional", flags:["heart"]},
-    {name:"Parmesan", tier:"occasional", flags:["heart"]}, {name:"Regular yogurt", tier:"occasional"},
+    {name:"Parmesan (big portion)", tier:"occasional", flags:["heart"]}, {name:"Regular yogurt", tier:"occasional"},
     {name:"Almonds", tier:"occasional"}, {name:"Cashews", tier:"occasional"}, {name:"Pistachios", tier:"occasional"},
     {name:"Peanuts", tier:"occasional"}, {name:"Peanut butter", tier:"occasional"}, {name:"Hazelnuts", tier:"occasional"},
+    {name:"Mixed nuts", tier:"occasional"}, {name:"Beans", tier:"occasional"},
     {name:"Kidney beans", tier:"occasional"}, {name:"Lentils", tier:"occasional"}, {name:"Split peas", tier:"occasional"},
     {name:"Bananas", tier:"occasional"}, {name:"Oranges", tier:"occasional", flags:["sugar"]},
     {name:"Orange juice", tier:"occasional", flags:["sugar"]}, {name:"Cantaloupe", tier:"occasional"},
     {name:"Honeydew", tier:"occasional"}, {name:"Dried fruit", tier:"occasional", flags:["sugar"]},
+    {name:"Dried cranberries", tier:"occasional", flags:["sugar"]},
     {name:"Dates", tier:"occasional", flags:["sugar"]}, {name:"Avocado", tier:"occasional"},
     {name:"Potatoes", tier:"occasional"}, {name:"Sweet potatoes", tier:"occasional"},
     {name:"Tomatoes", tier:"occasional"}, {name:"Tomato sauce", tier:"occasional"}, {name:"Spinach", tier:"occasional"},
     {name:"Winter squash", tier:"occasional"}, {name:"Beets", tier:"occasional"}, {name:"Artichokes", tier:"occasional"},
     {name:"Pie", tier:"occasional", flags:["sugar"]}, {name:"Cake", tier:"occasional", flags:["sugar"]},
     {name:"Dark chocolate", tier:"occasional", flags:["sugar"]}, {name:"Ice cream", tier:"occasional", flags:["sugar"]},
+    {name:"Graham crackers", tier:"occasional", flags:["sugar"]},
     {name:"Apple juice", tier:"occasional", flags:["sugar"]}, {name:"Cranberry juice", tier:"occasional", flags:["sugar"]},
     {name:"Cherry juice", tier:"occasional", flags:["sugar"]}, {name:"Lemonade", tier:"occasional", flags:["sugar"]},
     {name:"Soda", tier:"occasional", flags:["sugar"]}, {name:"Root beer", tier:"occasional", flags:["sugar"]}
@@ -517,8 +623,12 @@
   const BADGE_CHAR = { heart: "!", sugar: "!" };
 
   function onSearch() {
-    const q = document.getElementById('search-input').value.trim().toLowerCase();
+    const input = document.getElementById('search-input');
+    const q = input.value.trim().toLowerCase();
     const resultsBox = document.getElementById('search-results');
+    const clearBtn = document.getElementById('search-clear');
+
+    clearBtn.classList.toggle('show', input.value.length > 0);
 
     if (!q) {
       resultsBox.classList.remove('show');
@@ -530,7 +640,11 @@
     const matches = FOOD_DATA.filter(f => f.name.toLowerCase().includes(q)).slice(0, 8);
 
     if (matches.length === 0) {
-      resultsBox.innerHTML = '<div class="no-results">No match — ask Melissa if you\'re not sure.</div>';
+      const rawQuery = input.value.trim();
+      const message = `Can you look up ${rawQuery} and add it to my food app?`;
+      const smsLink = `sms:+12065799125&body=${encodeURIComponent(message)}`;
+      resultsBox.innerHTML = `<div class="no-results">Not on the list yet.</div>
+        <a class="text-melissa-btn" href="${smsLink}">Text Melissa about it</a>`;
       resultsBox.classList.add('show');
       requestAnimationFrame(setStickyOffsets);
       return;
@@ -538,7 +652,8 @@
 
     resultsBox.innerHTML = matches.map(f => {
       const badges = (f.flags || []).map(fl => `<span class="badge ${fl}">${BADGE_CHAR[fl]}</span>`).join('');
-      return `<div class="result-row">
+      const idx = FOOD_DATA.indexOf(f);
+      return `<div class="result-row" data-idx="${idx}">
         <span class="result-name">${f.name}${badges}</span>
         <span class="result-tag ${f.tier}">${TIER_LABEL[f.tier]}</span>
       </div>`;
@@ -546,6 +661,49 @@
     resultsBox.classList.add('show');
     requestAnimationFrame(setStickyOffsets);
   }
+
+  function clearSearch() {
+    const input = document.getElementById('search-input');
+    input.value = '';
+    input.focus();
+    onSearch();
+  }
+
+  function selectResult(idx) {
+    const f = FOOD_DATA[idx];
+    if (!f) return;
+    document.getElementById('search-results').classList.remove('show');
+    showTab(f.tier);
+    setTimeout(() => {
+      const panel = document.querySelector('.panel.show');
+      if (!panel) return;
+      const items = panel.querySelectorAll('.item');
+      for (const el of items) {
+        const label = el.childNodes[0] ? el.childNodes[0].textContent.trim() : el.textContent.trim();
+        if (label === f.name) {
+          el.scrollIntoView({behavior: 'smooth', block: 'center'});
+          el.classList.add('jump-highlight');
+          setTimeout(() => el.classList.remove('jump-highlight'), 1800);
+          break;
+        }
+      }
+    }, 200);
+  }
+
+  document.getElementById('search-results').addEventListener('click', function(e) {
+    const row = e.target.closest('.result-row');
+    if (row && row.dataset.idx !== undefined) {
+      selectResult(Number(row.dataset.idx));
+    }
+  });
+
+  document.addEventListener('click', function(e) {
+    const searchBox = document.querySelector('.search-box');
+    const resultsBox = document.getElementById('search-results');
+    if (searchBox && !searchBox.contains(e.target)) {
+      resultsBox.classList.remove('show');
+    }
+  });
 
   function showTab(tab) {
     document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
