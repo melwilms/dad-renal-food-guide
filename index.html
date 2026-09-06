@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>What Can I Eat</title>
+<style>
+  :root {
+    --cream: #FAF7F0;
+    --ink: #2C3B2E;
+    --sage: #6B8F71;
+    --sage-light: #E4EDE3;
+    --gold: #C99A3D;
+    --gold-light: #F6EBD3;
+    --clay: #B85C4A;
+    --clay-light: #F5E1DC;
+    --line: #DDD5C4;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Georgia, serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    padding-bottom: 40px;
+  }
+
+  header {
+    padding: 28px 20px 20px;
+    text-align: center;
+    border-bottom: 2px solid var(--line);
+    background: var(--cream);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  header h1 {
+    font-size: 28px;
+    margin: 0 0 4px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  header p {
+    margin: 0;
+    font-size: 16px;
+    color: #6B6355;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 8px;
+    padding: 16px 16px 0;
+    position: sticky;
+    top: 92px;
+    background: var(--cream);
+    z-index: 9;
+    border-bottom: 2px solid var(--line);
+  }
+
+  .tab {
+    flex: 1;
+    padding: 14px 6px;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 12px 12px 0 0;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: #8B8577;
+    border-bottom: 4px solid transparent;
+    transition: color 0.15s ease;
+  }
+
+  .tab.active[data-tab="daily"] { color: var(--sage); border-bottom-color: var(--sage); }
+  .tab.active[data-tab="moderate"] { color: var(--gold); border-bottom-color: var(--gold); }
+  .tab.active[data-tab="occasional"] { color: var(--clay); border-bottom-color: var(--clay); }
+
+  .freq-banner {
+    margin: 18px 16px 0;
+    padding: 16px 18px;
+    border-radius: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+    display: none;
+  }
+  .freq-banner.show { display: block; }
+  .freq-banner.daily { background: var(--sage-light); color: #3E5943; }
+  .freq-banner.moderate { background: var(--gold-light); color: #7A5A1E; }
+  .freq-banner.occasional { background: var(--clay-light); color: #8C4335; }
+
+  main {
+    padding: 8px 16px 20px;
+  }
+
+  .panel { display: none; }
+  .panel.show { display: block; }
+
+  .group {
+    margin-top: 22px;
+  }
+
+  .group-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #9C9585;
+    margin: 0 0 10px 4px;
+  }
+
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .item {
+    background: var(--white);
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    padding: 11px 18px;
+    font-size: 17px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--ink);
+  }
+
+  .panel[data-tab="daily"] .item { border-color: #C9DBC9; }
+  .panel[data-tab="moderate"] .item { border-color: #E6D3A3; }
+  .panel[data-tab="occasional"] .item { border-color: #E3BEB2; }
+
+  .note {
+    margin: 26px 4px 0;
+    padding: 16px;
+    background: var(--white);
+    border-radius: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #6B6355;
+    border: 2px solid var(--line);
+  }
+
+  .note strong { color: var(--ink); }
+
+  .item { position: relative; }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    margin-left: 6px;
+    vertical-align: middle;
+    color: var(--white);
+  }
+  .badge.heart { background: #B85C4A; }
+  .badge.sugar { background: #C99A3D; }
+
+  .legend {
+    display: flex;
+    gap: 18px;
+    padding: 12px 20px 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 13px;
+    color: #6B6355;
+    flex-wrap: wrap;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 5px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>What Can I Eat</h1>
+  <p>A simple guide for your meals</p>
+</header>
+
+<div class="tabs">
+  <button class="tab active" data-tab="daily" onclick="showTab('daily')">Every Day</button>
+  <button class="tab" data-tab="moderate" onclick="showTab('moderate')">Sometimes</button>
+  <button class="tab" data-tab="occasional" onclick="showTab('occasional')">Rarely</button>
+</div>
+
+<div class="freq-banner daily show" id="banner-daily">
+  These are ok daily, in a normal portion.
+</div>
+<div class="freq-banner moderate" id="banner-moderate">
+  Have these 2 to 3 times a week, in a normal portion.
+</div>
+<div class="freq-banner occasional" id="banner-occasional">
+  Save these for once a week or a special treat — small portion.
+</div>
+
+<div class="legend">
+  <span><span class="badge heart">♥</span> watch for heart / salt</span>
+  <span><span class="badge sugar">◆</span> watch for blood sugar</span>
+</div>
+
+<main>
+
+  <!-- DAILY -->
+  <div class="panel show" data-tab="daily">
+    <div class="group">
+      <div class="group-title">Proteins</div>
+      <div class="items">
+        <span class="item">Cod</span><span class="item">Tilapia</span><span class="item">Chicken breast</span><span class="item">Egg whites</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Vegetables</div>
+      <div class="items">
+        <span class="item">Cauliflower</span><span class="item">Cabbage</span><span class="item">Green beans</span><span class="item">Zucchini</span><span class="item">Bell peppers</span><span class="item">Cucumber</span><span class="item">Onion</span><span class="item">Garlic</span><span class="item">Romaine</span><span class="item">Radicchio</span><span class="item">Radishes</span><span class="item">Carrots</span><span class="item">Eggplant</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Fruits</div>
+      <div class="items">
+        <span class="item">Apples</span><span class="item">Berries</span><span class="item">Grapes<span class="badge sugar">◆</span></span><span class="item">Cherries</span><span class="item">Pineapple<span class="badge sugar">◆</span></span><span class="item">Peaches</span><span class="item">Plums</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Grains</div>
+      <div class="items">
+        <span class="item">White rice</span><span class="item">Regular pasta</span><span class="item">Couscous</span><span class="item">Pearl couscous</span><span class="item">Rice crackers</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Dairy & fats</div>
+      <div class="items">
+        <span class="item">Olive oil</span><span class="item">Unsalted butter</span><span class="item">Cream cheese</span><span class="item">Sour cream</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Flavor</div>
+      <div class="items">
+        <span class="item">Lemon</span><span class="item">Fresh herbs</span><span class="item">Ginger</span><span class="item">Curry powder</span><span class="item">Turmeric</span><span class="item">Cumin</span><span class="item">Smoked paprika</span><span class="item">Chili flake</span><span class="item">Herbal tea</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Sweets</div>
+      <div class="items">
+        <span class="item">Fresh berries</span><span class="item">Applesauce</span><span class="item">Frozen grapes<span class="badge sugar">◆</span></span><span class="item">Angel food cake<span class="badge sugar">◆</span></span>
+      </div>
+    </div>
+    <div class="note">
+      <strong>Check the label:</strong> Even "safe" foods like bagged salad mix, broth, or canned veggies can hide added sodium. Fresh or frozen (plain) is always the safer bet over canned.
+    </div>
+  </div>
+
+  <!-- MODERATE -->
+  <div class="panel" data-tab="moderate">
+    <div class="group">
+      <div class="group-title">Proteins</div>
+      <div class="items">
+        <span class="item">Shrimp<span class="badge heart">♥</span></span><span class="item">Salmon</span><span class="item">Lean ground beef<span class="badge heart">♥</span></span><span class="item">Tuna (no/low salt added)<span class="badge heart">♥</span></span><span class="item">Deli turkey (no salt added)<span class="badge heart">♥</span></span><span class="item">Whole eggs</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Vegetables</div>
+      <div class="items">
+        <span class="item">Mushrooms</span><span class="item">Corn</span><span class="item">Broccoli</span><span class="item">Snap peas</span><span class="item">Brussels sprouts</span><span class="item">Kale (small amount)</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Nuts, seeds & legumes</div>
+      <div class="items">
+        <span class="item">Pecans</span><span class="item">Macadamia nuts</span><span class="item">Pumpkin seeds</span><span class="item">Hummus<span class="badge heart">♥</span></span><span class="item">Canned chickpeas<span class="badge heart">♥</span></span><span class="item">Black-eyed peas<span class="badge heart">♥</span></span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Dairy</div>
+      <div class="items">
+        <span class="item">Heavy cream</span><span class="item">Mascarpone</span><span class="item">Ricotta</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Snacks</div>
+      <div class="items">
+        <span class="item">Air-popped popcorn</span><span class="item">Unsalted pretzels</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Sweets</div>
+      <div class="items">
+        <span class="item">Sorbet (berry or lemon)<span class="badge sugar">◆</span></span><span class="item">Homemade rice krispie treat<span class="badge sugar">◆</span></span>
+      </div>
+    </div>
+    <div class="note">
+      <strong>Check the label:</strong> Pick canned or frozen fish/shrimp with no added salt or "sodium solution." Skip anything with a seasoning packet.
+    </div>
+  </div>
+
+  <!-- OCCASIONAL -->
+  <div class="panel" data-tab="occasional">
+    <div class="group">
+      <div class="group-title">Proteins</div>
+      <div class="items">
+        <span class="item">Chicken apple sausage<span class="badge heart">♥</span></span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Dairy</div>
+      <div class="items">
+        <span class="item">Cheddar<span class="badge heart">♥</span></span><span class="item">Parmesan (big portion)<span class="badge heart">♥</span></span><span class="item">Regular yogurt</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Nuts, seeds & legumes</div>
+      <div class="items">
+        <span class="item">Almonds</span><span class="item">Cashews</span><span class="item">Pistachios</span><span class="item">Peanuts</span><span class="item">Peanut butter</span><span class="item">Hazelnuts</span><span class="item">Kidney beans</span><span class="item">Lentils</span><span class="item">Split peas</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Fruits</div>
+      <div class="items">
+        <span class="item">Bananas</span><span class="item">Oranges / OJ<span class="badge sugar">◆</span></span><span class="item">Cantaloupe</span><span class="item">Honeydew</span><span class="item">Dried fruit<span class="badge sugar">◆</span></span><span class="item">Dates<span class="badge sugar">◆</span></span><span class="item">Avocado</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Vegetables</div>
+      <div class="items">
+        <span class="item">Potatoes</span><span class="item">Sweet potatoes</span><span class="item">Tomatoes / sauce</span><span class="item">Spinach</span><span class="item">Winter squash</span><span class="item">Beets</span><span class="item">Artichokes</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Sweets</div>
+      <div class="items">
+        <span class="item">Small piece of pie or cake<span class="badge sugar">◆</span></span><span class="item">Dark chocolate (a few squares)<span class="badge sugar">◆</span></span><span class="item">Small ice cream<span class="badge sugar">◆</span></span>
+      </div>
+    </div>
+    <div class="note">
+      <strong>Check the label:</strong> Cured or processed meats (sausage, bacon, deli meat) usually pack 300-500mg sodium in one small serving. Homemade versions with no added salt are almost always the better swap.
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>A note from Melissa:</strong> This is a general guide, not a medical plan. If something isn't sure or you're not sure how much — just call me before eating a big portion. Love you, Dad.
+  </div>
+
+</main>
+
+<script>
+  function showTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+    document.querySelectorAll('.panel').forEach(p => p.classList.toggle('show', p.dataset.tab === tab));
+    document.querySelectorAll('.freq-banner').forEach(b => b.classList.remove('show'));
+    document.getElementById('banner-' + tab).classList.add('show');
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+</script>
+
+</body>
+</html>
