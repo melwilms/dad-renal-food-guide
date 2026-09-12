@@ -258,6 +258,18 @@
   }
   .legend span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
 
+  .how-to-note {
+    margin: 16px 16px 0;
+    padding: 14px 16px;
+    background: var(--white);
+    border: 3px dashed var(--line);
+    border-radius: 14px;
+    font-size: 0.87rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
   main {
     padding: 8px 16px 20px;
   }
@@ -293,6 +305,12 @@
     font-weight: 600;
     color: var(--ink);
     position: relative;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .item:active {
+    background: var(--sage-light);
   }
 
   .panel[data-tab="daily"] .item { border-color: #7FB489; }
@@ -307,6 +325,109 @@
     0% { box-shadow: 0 0 0 5px #C99A3D; }
     70% { box-shadow: 0 0 0 5px #C99A3D; }
     100% { box-shadow: 0 0 0 0 transparent; }
+  }
+
+  .info-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 100;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .info-overlay.show {
+    display: flex;
+  }
+
+  .info-card {
+    background: var(--cream);
+    width: 100%;
+    max-width: 520px;
+    border-radius: 22px 22px 0 0;
+    padding: 24px 22px 32px;
+    box-shadow: 0 -6px 24px rgba(0,0,0,0.25);
+  }
+
+  .info-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+
+  .info-name {
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+
+  .info-close {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: var(--line);
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .info-tier-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 18px;
+  }
+
+  .info-tier-tag.daily { background: var(--sage); }
+  .info-tier-tag.moderate { background: var(--gold); }
+  .info-tier-tag.occasional { background: var(--clay); }
+
+  .info-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-top: 2px solid var(--line);
+  }
+
+  .info-row-label {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .info-row-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--white);
+  }
+
+  .info-row-value.level-low { background: var(--sage); }
+  .info-row-value.level-mod { background: var(--gold); }
+  .info-row-value.level-high { background: var(--clay); }
+
+  .info-footer {
+    margin-top: 16px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
   }
 
   .note {
@@ -394,13 +515,13 @@
     <div class="group">
       <div class="group-title">Proteins</div>
       <div class="items">
-        <span class="item">Cod</span><span class="item">Tilapia</span><span class="item">Chicken breast</span><span class="item">Turkey breast (roasted, plain)</span><span class="item">Ground turkey</span><span class="item">Egg whites</span><span class="item">Liquid egg substitute</span>
+        <span class="item">Cod</span><span class="item">Tilapia</span><span class="item">Chicken breast</span><span class="item">Turkey breast (roasted, plain)</span><span class="item">Ground turkey</span><span class="item">Egg whites</span><span class="item">Liquid egg whites</span>
       </div>
     </div>
     <div class="group">
       <div class="group-title">Vegetables</div>
       <div class="items">
-        <span class="item">Cauliflower</span><span class="item">Cabbage</span><span class="item">Green beans</span><span class="item">Zucchini</span><span class="item">Yellow squash</span><span class="item">Bell peppers</span><span class="item">Cucumber</span><span class="item">Celery</span><span class="item">Onion</span><span class="item">Garlic</span><span class="item">Romaine</span><span class="item">Iceberg lettuce</span><span class="item">Radicchio</span><span class="item">Radishes</span><span class="item">Snow peas</span><span class="item">Carrots</span><span class="item">Eggplant</span>
+        <span class="item">Cauliflower</span><span class="item">Cabbage</span><span class="item">Green beans</span><span class="item">Zucchini</span><span class="item">Yellow squash</span><span class="item">Bell peppers</span><span class="item">Cucumber</span><span class="item">Celery</span><span class="item">Onion</span><span class="item">Garlic</span><span class="item">Romaine</span><span class="item">Iceberg lettuce</span><span class="item">Radicchio</span><span class="item">Radishes</span><span class="item">Snow peas</span><span class="item">Carrots</span><span class="item">Corn</span><span class="item">Eggplant</span>
       </div>
     </div>
     <div class="group">
@@ -412,7 +533,7 @@
     <div class="group">
       <div class="group-title">Grains & breads</div>
       <div class="items">
-        <span class="item">White rice</span><span class="item">Regular pasta</span><span class="item">Couscous</span><span class="item">Pearl couscous</span><span class="item">White bread</span><span class="item">Plain bagel</span><span class="item">Corn tortillas</span><span class="item">Flour tortillas</span><span class="item">Cream of wheat</span><span class="item">Grits</span><span class="item">Rice crackers</span><span class="item">Unsalted crackers</span>
+        <span class="item">White rice</span><span class="item">Regular pasta</span><span class="item">Couscous</span><span class="item">Pearl couscous</span><span class="item">White bread</span><span class="item">Plain bagel</span><span class="item">Corn tortillas</span><span class="item">Flour tortillas</span><span class="item">Cream of wheat</span><span class="item">Grits</span><span class="item">Hash browns (plain)</span><span class="item">Rice crackers (plain)</span><span class="item">Unsalted crackers</span>
       </div>
     </div>
     <div class="group">
@@ -452,19 +573,19 @@
     <div class="group">
       <div class="group-title">Proteins</div>
       <div class="items">
-        <span class="item">Shrimp<span class="badge heart">!</span></span><span class="item">Salmon</span><span class="item">Lean ground beef<span class="badge heart">!</span></span><span class="item">Tuna (no/low salt added)<span class="badge heart">!</span></span><span class="item">Deli turkey (no salt added)<span class="badge heart">!</span></span><span class="item">Whole eggs</span>
+        <span class="item">Shrimp<span class="badge heart">!</span></span><span class="item">Salmon</span><span class="item">Lean ground beef<span class="badge heart">!</span></span><span class="item">Chicken thighs<span class="badge heart">!</span></span><span class="item">Tuna (no/low salt added)<span class="badge heart">!</span></span><span class="item">Deli turkey (no salt added)</span><span class="item">Whole eggs</span>
       </div>
     </div>
     <div class="group">
       <div class="group-title">Vegetables</div>
       <div class="items">
-        <span class="item">Mushrooms</span><span class="item">Corn</span><span class="item">Broccoli</span><span class="item">Snap peas</span><span class="item">Brussels sprouts</span><span class="item">Kale (small amount)</span>
+        <span class="item">Mushrooms</span><span class="item">Broccoli</span><span class="item">Snap peas</span><span class="item">Green peas</span><span class="item">Brussels sprouts</span><span class="item">Kale (small amount)</span>
       </div>
     </div>
     <div class="group">
       <div class="group-title">Nuts, seeds & legumes</div>
       <div class="items">
-        <span class="item">Pecans</span><span class="item">Macadamia nuts</span><span class="item">Pumpkin seeds</span><span class="item">Hummus<span class="badge heart">!</span></span><span class="item">Canned chickpeas<span class="badge heart">!</span></span><span class="item">Black-eyed peas<span class="badge heart">!</span></span>
+        <span class="item">Pecans</span><span class="item">Macadamia nuts</span><span class="item">Cashews</span><span class="item">Peanuts</span><span class="item">Peanut butter</span><span class="item">Hazelnuts</span><span class="item">Pumpkin seeds</span><span class="item">Hummus<span class="badge heart">!</span></span><span class="item">Canned chickpeas<span class="badge heart">!</span></span><span class="item">Black-eyed peas<span class="badge heart">!</span></span>
       </div>
     </div>
     <div class="group">
@@ -501,13 +622,13 @@
     <div class="group">
       <div class="group-title">Dairy</div>
       <div class="items">
-        <span class="item">Cheddar<span class="badge heart">!</span></span><span class="item">Parmesan (big portion)<span class="badge heart">!</span></span><span class="item">Regular yogurt</span>
+        <span class="item">Cheddar<span class="badge heart">!</span></span><span class="item">Parmesan (big portion)<span class="badge heart">!</span></span><span class="item">Plain yogurt</span>
       </div>
     </div>
     <div class="group">
       <div class="group-title">Nuts, seeds & legumes</div>
       <div class="items">
-        <span class="item">Almonds</span><span class="item">Cashews</span><span class="item">Pistachios</span><span class="item">Peanuts</span><span class="item">Peanut butter</span><span class="item">Hazelnuts</span><span class="item">Mixed nuts</span><span class="item">Beans</span><span class="item">Kidney beans</span><span class="item">Lentils</span><span class="item">Split peas</span>
+        <span class="item">Almonds</span><span class="item">Pistachios</span><span class="item">Mixed nuts</span><span class="item">Beans</span><span class="item">Kidney beans</span><span class="item">Lentils</span><span class="item">Split peas</span>
       </div>
     </div>
     <div class="group">
@@ -545,82 +666,194 @@
 
 </main>
 
+<div class="info-overlay" id="info-overlay" onclick="if(event.target===this) closeInfoModal()">
+  <div class="info-card">
+    <div class="info-header">
+      <div class="info-name" id="info-name"></div>
+      <button type="button" class="info-close" onclick="closeInfoModal()" aria-label="Close">✕</button>
+    </div>
+    <div class="info-tier-tag" id="info-tier"></div>
+    <div class="info-row">
+      <span class="info-row-label">Sodium</span>
+      <span class="info-row-value" id="info-na"></span>
+    </div>
+    <div class="info-row">
+      <span class="info-row-label">Potassium</span>
+      <span class="info-row-value" id="info-k"></span>
+    </div>
+    <div class="info-row">
+      <span class="info-row-label">Phosphorus</span>
+      <span class="info-row-value" id="info-p"></span>
+    </div>
+  </div>
+</div>
+
 <script>
   const FOOD_DATA = [
     // Every day
-    {name:"Cod", tier:"daily"}, {name:"Tilapia", tier:"daily"}, {name:"Chicken breast", tier:"daily"},
-    {name:"Turkey breast", tier:"daily"}, {name:"Ground turkey", tier:"daily"}, {name:"Egg whites", tier:"daily"},
-    {name:"Liquid egg substitute", tier:"daily"},
-    {name:"Cauliflower", tier:"daily"}, {name:"Cabbage", tier:"daily"}, {name:"Green beans", tier:"daily"},
-    {name:"Zucchini", tier:"daily"}, {name:"Yellow squash", tier:"daily"}, {name:"Bell peppers", tier:"daily"},
-    {name:"Cucumber", tier:"daily"}, {name:"Celery", tier:"daily"}, {name:"Onion", tier:"daily"},
-    {name:"Garlic", tier:"daily"}, {name:"Romaine", tier:"daily"},
-    {name:"Iceberg lettuce", tier:"daily"}, {name:"Radicchio", tier:"daily"}, {name:"Radishes", tier:"daily"},
-    {name:"Snow peas", tier:"daily"}, {name:"Carrots", tier:"daily"},
-    {name:"Eggplant", tier:"daily"}, {name:"Apples", tier:"daily"}, {name:"Berries", tier:"daily"},
-    {name:"Cranberries (fresh)", tier:"daily"},
-    {name:"Grapes", tier:"daily", flags:["sugar"]}, {name:"Cherries", tier:"daily"},
-    {name:"Pineapple", tier:"daily", flags:["sugar"]}, {name:"Peaches", tier:"daily"}, {name:"Plums", tier:"daily"},
-    {name:"White rice", tier:"daily"}, {name:"Regular pasta", tier:"daily"}, {name:"Couscous", tier:"daily"},
-    {name:"Pearl couscous", tier:"daily"}, {name:"White bread", tier:"daily"}, {name:"Plain bagel", tier:"daily"},
-    {name:"Corn tortillas", tier:"daily"}, {name:"Flour tortillas", tier:"daily"}, {name:"Cream of wheat", tier:"daily"},
-    {name:"Grits", tier:"daily"}, {name:"Rice crackers", tier:"daily"}, {name:"Unsalted crackers", tier:"daily"},
-    {name:"Olive oil", tier:"daily"}, {name:"Coconut oil", tier:"daily"}, {name:"Unsalted butter", tier:"daily"},
-    {name:"Cream cheese", tier:"daily"}, {name:"Sour cream", tier:"daily"}, {name:"Mayonnaise", tier:"daily"},
-    {name:"Lemon", tier:"daily"}, {name:"Vinegar", tier:"daily"}, {name:"Fresh herbs", tier:"daily"},
-    {name:"Oregano", tier:"daily"}, {name:"Basil", tier:"daily"}, {name:"Rosemary", tier:"daily"},
-    {name:"Thyme", tier:"daily"}, {name:"Bay leaf", tier:"daily"}, {name:"Black pepper", tier:"daily"},
-    {name:"Garlic powder", tier:"daily"}, {name:"Onion powder", tier:"daily"}, {name:"Cinnamon", tier:"daily"},
-    {name:"Nutmeg", tier:"daily"}, {name:"Vanilla extract", tier:"daily"},
-    {name:"Ginger", tier:"daily"}, {name:"Curry powder", tier:"daily"}, {name:"Turmeric", tier:"daily"},
-    {name:"Cumin", tier:"daily"}, {name:"Smoked paprika", tier:"daily"}, {name:"Chili flake", tier:"daily"},
-    {name:"Dijon mustard", tier:"daily"},
-    {name:"Hot sauce", tier:"daily"}, {name:"Salt-free spice blends", tier:"daily"}, {name:"Salt-free taco seasoning", tier:"daily"},
-    {name:"Herbal tea", tier:"daily"}, {name:"Water", tier:"daily"}, {name:"Sparkling water", tier:"daily"},
-    {name:"Fresh berries", tier:"daily"},
-    {name:"Applesauce", tier:"daily"}, {name:"Frozen grapes", tier:"daily", flags:["sugar"]},
-    {name:"Angel food cake", tier:"daily", flags:["sugar"]}, {name:"Sugar-free gelatin", tier:"daily"},
+    {name:"Cod", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Tilapia", tier:"daily", na:"Low", k:"Low", p:"Moderate"},
+    {name:"Chicken breast", tier:"daily", na:"Low", k:"Low", p:"Moderate"},
+    {name:"Turkey breast", tier:"daily", na:"Low", k:"Low", p:"Moderate"},
+    {name:"Ground turkey", tier:"daily", na:"Low", k:"Low", p:"Moderate"},
+    {name:"Egg whites", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Liquid egg whites", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Cauliflower", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Corn", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Cabbage", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Green beans", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Zucchini", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Yellow squash", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Bell peppers", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Cucumber", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Celery", tier:"daily", na:"Low", k:"Moderate", p:"Low"},
+    {name:"Onion", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Garlic", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Romaine", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Iceberg lettuce", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Radicchio", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Radishes", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Snow peas", tier:"daily", na:"Low", k:"Moderate", p:"Low"},
+    {name:"Carrots", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Eggplant", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Apples", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Berries", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Cranberries (fresh)", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Grapes", tier:"daily", flags:["sugar"], na:"Low", k:"Low", p:"Low"},
+    {name:"Cherries", tier:"daily", na:"Low", k:"Moderate", p:"Low"},
+    {name:"Pineapple", tier:"daily", flags:["sugar"], na:"Low", k:"Low", p:"Low"},
+    {name:"Peaches", tier:"daily", na:"Low", k:"Moderate", p:"Low"},
+    {name:"Plums", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"White rice", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Regular pasta", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Couscous", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Pearl couscous", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"White bread", tier:"daily", na:"Moderate", k:"Low", p:"Low"},
+    {name:"Plain bagel", tier:"daily", na:"Moderate", k:"Low", p:"Low"},
+    {name:"Corn tortillas", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Flour tortillas", tier:"daily", na:"Moderate", k:"Low", p:"Low"},
+    {name:"Cream of wheat", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Grits", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Hash browns (plain)", tier:"daily", na:"Moderate", k:"Moderate", p:"Low"},
+    {name:"Rice crackers (plain)", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Unsalted crackers", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Olive oil", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Coconut oil", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Unsalted butter", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Cream cheese", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Sour cream", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Mayonnaise", tier:"daily", na:"Moderate", k:"Low", p:"Low"},
+    {name:"Lemon", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Vinegar", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Fresh herbs", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Oregano", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Basil", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Rosemary", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Thyme", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Bay leaf", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Black pepper", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Garlic powder", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Onion powder", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Cinnamon", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Nutmeg", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Vanilla extract", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Ginger", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Curry powder", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Turmeric", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Cumin", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Smoked paprika", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Chili flake", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Dijon mustard", tier:"daily", na:"Moderate", k:"Low", p:"Low"},
+    {name:"Hot sauce", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Salt-free spice blends", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Salt-free taco seasoning", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Herbal tea", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Water", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Sparkling water", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Fresh berries", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Applesauce", tier:"daily", na:"Low", k:"Low", p:"Low"},
+    {name:"Frozen grapes", tier:"daily", flags:["sugar"], na:"Low", k:"Low", p:"Low"},
+    {name:"Angel food cake", tier:"daily", flags:["sugar"], na:"Moderate", k:"Low", p:"Low"},
+    {name:"Sugar-free gelatin", tier:"daily", na:"Low", k:"Low", p:"Low"},
 
     // Sometimes
-    {name:"Shrimp", tier:"moderate", flags:["heart"]}, {name:"Salmon", tier:"moderate"},
-    {name:"Lean ground beef", tier:"moderate", flags:["heart"]},
-    {name:"Tuna (no/low salt added)", tier:"moderate", flags:["heart"]},
-    {name:"Deli turkey (no salt added)", tier:"moderate", flags:["heart"]},
-    {name:"Whole eggs", tier:"moderate"}, {name:"Mushrooms", tier:"moderate"}, {name:"Corn", tier:"moderate"},
-    {name:"Broccoli", tier:"moderate"}, {name:"Snap peas", tier:"moderate"}, {name:"Brussels sprouts", tier:"moderate"},
-    {name:"Kale", tier:"moderate"}, {name:"Pecans", tier:"moderate"}, {name:"Macadamia nuts", tier:"moderate"},
-    {name:"Pumpkin seeds", tier:"moderate"}, {name:"Hummus", tier:"moderate", flags:["heart"]},
-    {name:"Canned chickpeas", tier:"moderate", flags:["heart"]}, {name:"Black-eyed peas", tier:"moderate", flags:["heart"]},
-    {name:"Heavy cream", tier:"moderate"}, {name:"Mascarpone", tier:"moderate"}, {name:"Ricotta", tier:"moderate"},
-    {name:"Parmesan (small portion)", tier:"moderate"},
-    {name:"Air-popped popcorn", tier:"moderate"}, {name:"Unsalted pretzels", tier:"moderate"},
-    {name:"Sorbet", tier:"moderate", flags:["sugar"]}, {name:"Rice krispie treat", tier:"moderate", flags:["sugar"]},
+    {name:"Shrimp", tier:"moderate", flags:["heart"], na:"Moderate", k:"Moderate", p:"Moderate"},
+    {name:"Salmon", tier:"moderate", na:"Low", k:"Moderate", p:"Moderate"},
+    {name:"Lean ground beef", tier:"moderate", flags:["heart"], na:"Low", k:"Moderate", p:"Moderate"},
+    {name:"Chicken thighs", tier:"moderate", flags:["heart"], na:"Low", k:"Moderate", p:"Moderate"},
+    {name:"Tuna (no/low salt added)", tier:"moderate", flags:["heart"], na:"Moderate", k:"Moderate", p:"Moderate"},
+    {name:"Deli turkey (no salt added)", tier:"moderate", na:"Low", k:"Low", p:"Low"},
+    {name:"Whole eggs", tier:"moderate", na:"Low", k:"Low", p:"Moderate"},
+    {name:"Mushrooms", tier:"moderate", na:"Low", k:"Moderate", p:"Low"},
+    {name:"Broccoli", tier:"moderate", na:"Low", k:"High", p:"Low"},
+    {name:"Snap peas", tier:"moderate", na:"Low", k:"Moderate", p:"Low"},
+    {name:"Green peas", tier:"moderate", na:"Low", k:"Low", p:"Moderate"},
+    {name:"Brussels sprouts", tier:"moderate", na:"Low", k:"High", p:"Low"},
+    {name:"Kale", tier:"moderate", na:"Low", k:"High", p:"Low"},
+    {name:"Pecans", tier:"moderate", na:"Low", k:"Low", p:"Low"},
+    {name:"Macadamia nuts", tier:"moderate", na:"Low", k:"Low", p:"Low"},
+    {name:"Pumpkin seeds", tier:"moderate", na:"Low", k:"Moderate", p:"High"},
+    {name:"Hummus", tier:"moderate", flags:["heart"], na:"Moderate", k:"Moderate", p:"Moderate"},
+    {name:"Canned chickpeas", tier:"moderate", flags:["heart"], na:"Moderate", k:"Moderate", p:"Moderate"},
+    {name:"Black-eyed peas", tier:"moderate", flags:["heart"], na:"Moderate", k:"Moderate", p:"Moderate"},
+    {name:"Heavy cream", tier:"moderate", na:"Low", k:"Low", p:"Low"},
+    {name:"Mascarpone", tier:"moderate", na:"Low", k:"Low", p:"Low"},
+    {name:"Ricotta", tier:"moderate", na:"Moderate", k:"Low", p:"Moderate"},
+    {name:"Parmesan (small portion)", tier:"moderate", na:"Moderate", k:"Low", p:"Moderate"},
+    {name:"Air-popped popcorn", tier:"moderate", na:"Low", k:"Low", p:"Low"},
+    {name:"Unsalted pretzels", tier:"moderate", na:"Low", k:"Low", p:"Low"},
+    {name:"Sorbet", tier:"moderate", flags:["sugar"], na:"Low", k:"Low", p:"Low"},
+    {name:"Rice krispie treat", tier:"moderate", flags:["sugar"], na:"Moderate", k:"Low", p:"Low"},
 
     // Rarely
-    {name:"Chicken apple sausage", tier:"occasional", flags:["heart"]}, {name:"Cheddar", tier:"occasional", flags:["heart"]},
-    {name:"Parmesan (big portion)", tier:"occasional", flags:["heart"]}, {name:"Regular yogurt", tier:"occasional"},
-    {name:"Almonds", tier:"occasional"}, {name:"Cashews", tier:"occasional"}, {name:"Pistachios", tier:"occasional"},
-    {name:"Peanuts", tier:"occasional"}, {name:"Peanut butter", tier:"occasional"}, {name:"Hazelnuts", tier:"occasional"},
-    {name:"Mixed nuts", tier:"occasional"}, {name:"Beans", tier:"occasional"},
-    {name:"Kidney beans", tier:"occasional"}, {name:"Lentils", tier:"occasional"}, {name:"Split peas", tier:"occasional"},
-    {name:"Bananas", tier:"occasional"}, {name:"Oranges", tier:"occasional", flags:["sugar"]},
-    {name:"Orange juice", tier:"occasional", flags:["sugar"]}, {name:"Cantaloupe", tier:"occasional"},
-    {name:"Honeydew", tier:"occasional"}, {name:"Dried fruit", tier:"occasional", flags:["sugar"]},
-    {name:"Dried cranberries", tier:"occasional", flags:["sugar"]},
-    {name:"Dates", tier:"occasional", flags:["sugar"]}, {name:"Avocado", tier:"occasional"},
-    {name:"Potatoes", tier:"occasional"}, {name:"Sweet potatoes", tier:"occasional"},
-    {name:"Tomatoes", tier:"occasional"}, {name:"Tomato sauce", tier:"occasional"}, {name:"Spinach", tier:"occasional"},
-    {name:"Winter squash", tier:"occasional"}, {name:"Beets", tier:"occasional"}, {name:"Artichokes", tier:"occasional"},
-    {name:"Pie", tier:"occasional", flags:["sugar"]}, {name:"Cake", tier:"occasional", flags:["sugar"]},
-    {name:"Dark chocolate", tier:"occasional", flags:["sugar"]}, {name:"Ice cream", tier:"occasional", flags:["sugar"]},
-    {name:"Graham crackers", tier:"occasional", flags:["sugar"]},
-    {name:"Apple juice", tier:"occasional", flags:["sugar"]}, {name:"Cranberry juice", tier:"occasional", flags:["sugar"]},
-    {name:"Cherry juice", tier:"occasional", flags:["sugar"]}, {name:"Lemonade", tier:"occasional", flags:["sugar"]},
-    {name:"Soda", tier:"occasional", flags:["sugar"]}, {name:"Root beer", tier:"occasional", flags:["sugar"]}
+    {name:"Chicken apple sausage", tier:"occasional", flags:["heart"], na:"High", k:"Moderate", p:"Moderate"},
+    {name:"Cheddar", tier:"occasional", flags:["heart"], na:"High", k:"Low", p:"Moderate"},
+    {name:"Parmesan (big portion)", tier:"occasional", flags:["heart"], na:"High", k:"Low", p:"High"},
+    {name:"Plain yogurt", tier:"occasional", na:"Low", k:"High", p:"High"},
+    {name:"Almonds", tier:"occasional", na:"Low", k:"Moderate", p:"Moderate"},
+    {name:"Cashews", tier:"moderate", na:"Low", k:"Moderate", p:"Moderate"},
+    {name:"Pistachios", tier:"occasional", na:"Low", k:"High", p:"Moderate"},
+    {name:"Peanuts", tier:"moderate", na:"Low", k:"Moderate", p:"Moderate"},
+    {name:"Peanut butter", tier:"moderate", na:"Moderate", k:"Moderate", p:"Moderate"},
+    {name:"Hazelnuts", tier:"moderate", na:"Low", k:"Moderate", p:"Moderate"},
+    {name:"Mixed nuts", tier:"occasional", na:"Moderate", k:"Moderate", p:"Moderate"},
+    {name:"Beans", tier:"occasional", na:"Moderate", k:"High", p:"High"},
+    {name:"Kidney beans", tier:"occasional", na:"Moderate", k:"High", p:"High"},
+    {name:"Lentils", tier:"occasional", na:"Low", k:"High", p:"High"},
+    {name:"Split peas", tier:"occasional", na:"Low", k:"High", p:"High"},
+    {name:"Bananas", tier:"occasional", na:"Low", k:"High", p:"Low"},
+    {name:"Oranges", tier:"occasional", flags:["sugar"], na:"Low", k:"High", p:"Low"},
+    {name:"Orange juice", tier:"occasional", flags:["sugar"], na:"Low", k:"High", p:"Low"},
+    {name:"Cantaloupe", tier:"occasional", na:"Low", k:"High", p:"Low"},
+    {name:"Honeydew", tier:"occasional", na:"Low", k:"High", p:"Low"},
+    {name:"Dried fruit", tier:"occasional", flags:["sugar"], na:"Low", k:"High", p:"Low"},
+    {name:"Dried cranberries", tier:"occasional", flags:["sugar"], na:"Low", k:"Moderate", p:"Low"},
+    {name:"Dates", tier:"occasional", flags:["sugar"], na:"Low", k:"High", p:"Moderate"},
+    {name:"Avocado", tier:"occasional", na:"Low", k:"High", p:"Moderate"},
+    {name:"Potatoes", tier:"occasional", na:"Low", k:"High", p:"Moderate"},
+    {name:"Sweet potatoes", tier:"occasional", na:"Low", k:"High", p:"Moderate"},
+    {name:"Tomatoes", tier:"occasional", na:"Low", k:"High", p:"Low"},
+    {name:"Tomato sauce", tier:"occasional", na:"High", k:"High", p:"Low"},
+    {name:"Spinach", tier:"occasional", na:"Low", k:"High", p:"Moderate"},
+    {name:"Winter squash", tier:"occasional", na:"Low", k:"High", p:"Moderate"},
+    {name:"Beets", tier:"occasional", na:"Moderate", k:"High", p:"Moderate"},
+    {name:"Artichokes", tier:"occasional", na:"Low", k:"High", p:"Moderate"},
+    {name:"Pie", tier:"occasional", flags:["sugar"], na:"Moderate", k:"Low", p:"Low"},
+    {name:"Cake", tier:"occasional", flags:["sugar"], na:"Moderate", k:"Low", p:"Low"},
+    {name:"Dark chocolate", tier:"occasional", flags:["sugar"], na:"Low", k:"Moderate", p:"High"},
+    {name:"Ice cream", tier:"occasional", flags:["sugar"], na:"Low", k:"Low", p:"Moderate"},
+    {name:"Graham crackers", tier:"occasional", flags:["sugar"], na:"Moderate", k:"Low", p:"Moderate"},
+    {name:"Apple juice", tier:"occasional", flags:["sugar"], na:"Low", k:"Moderate", p:"Low"},
+    {name:"Cranberry juice", tier:"occasional", flags:["sugar"], na:"Low", k:"Low", p:"Low"},
+    {name:"Cherry juice", tier:"occasional", flags:["sugar"], na:"Low", k:"Moderate", p:"Low"},
+    {name:"Lemonade", tier:"occasional", flags:["sugar"], na:"Low", k:"Low", p:"Low"},
+    {name:"Soda", tier:"occasional", flags:["sugar"], na:"Low", k:"Low", p:"Moderate"},
+    {name:"Root beer", tier:"occasional", flags:["sugar"], na:"Low", k:"Low", p:"Low"}
   ];
 
   const TIER_LABEL = { daily: "Every Day", moderate: "Sometimes", occasional: "Rarely" };
   const BADGE_CHAR = { heart: "!", sugar: "!" };
+  const LEVEL_COLOR = { Low: "level-low", Moderate: "level-mod", High: "level-high" };
 
   function onSearch() {
     const input = document.getElementById('search-input');
@@ -694,6 +927,37 @@
     const row = e.target.closest('.result-row');
     if (row && row.dataset.idx !== undefined) {
       selectResult(Number(row.dataset.idx));
+    }
+  });
+
+  function setLevel(id, level) {
+    const el = document.getElementById(id);
+    el.textContent = level;
+    el.className = 'info-row-value ' + (LEVEL_COLOR[level] || 'level-mod');
+  }
+
+  function openInfoModal(entry) {
+    document.getElementById('info-name').textContent = entry.name;
+    const tierEl = document.getElementById('info-tier');
+    tierEl.textContent = TIER_LABEL[entry.tier];
+    tierEl.className = 'info-tier-tag ' + entry.tier;
+    setLevel('info-na', entry.na || 'Moderate');
+    setLevel('info-k', entry.k || 'Moderate');
+    setLevel('info-p', entry.p || 'Moderate');
+    document.getElementById('info-overlay').classList.add('show');
+  }
+
+  function closeInfoModal() {
+    document.getElementById('info-overlay').classList.remove('show');
+  }
+
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('#search-results') || e.target.closest('.info-card')) return;
+    const item = e.target.closest('.item');
+    if (item) {
+      const label = item.childNodes[0] ? item.childNodes[0].textContent.trim() : item.textContent.trim();
+      const entry = FOOD_DATA.find(f => f.name === label);
+      if (entry) openInfoModal(entry);
     }
   });
 
