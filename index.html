@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="What Can I Eat">
 <title>What Can I Eat</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50' y='68' font-size='70' text-anchor='middle'%3E%E2%9D%A4%EF%B8%8F%3C/text%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAE80lEQVR4nO3duZEcRxBG4dwJ2kETVqC6bsBGSusGHIAl0BABiUKBjUHP/D191JGZ9T6NwUCgK+tNdc/B4NvPH98NeOY2+gLgF3FAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigEQckIgDEnFAIg5IxAGJOCARByTigPRX67/g8+P9xJ/68vVb9Stx69yIrP2U3lr8R02nV6vkayXEiKrFUX21T0WvpMOUKo6oQhx9slgJV0nnKVWZz6U4hmRxL0QiY6d0ZUQn4xiexT23ifiZ0rkRHY7Dz4Lveesjx5SOxeFzzYWTPjyPqNg/qL1x+F9zMTaRZFPaFUeUNS+GJJJvSi/iCLfgRc8+sk5p67uVuGu2jhefeEry5Ai95kXr8yPHlEwM6kkcaRZctOsj/aDWt5VkC7ZmK8o3qEd/xJF1wdXXlXJQj4ua5cc+FbczZRnFamm/nzkSr3lx/fljhinZ/4P6dXJMsuaLy5xkSoubTbbm04udcEqzPHPgqM+P97d///l79GUMcPThY6pjYzHpyXFos+csw6aNwybe8v3mjWOnmRuaOo6XGz9zGTZ5HNg2exwbZ8Pkx4YRBzYQx/MTgmPDiAMbiMPs4Zzg2CiIAxJxQCKOX5ZbCfeUBXFAIg5Ik/6eA3twckAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDki3o//jbkziy9dvnByQbmbG4YGVkgQnB9aWw+K2+mdg8fvkoA/Ynxnc1L/AhFYBrJ856AOLJw+k9DGnx33n3QrMxInwPA4Oj6mo7ebkmN3GQSDj4PCYwfYub50c9JHby/19cVuhj5m9fuagj5T2bOuuB1L6SGbnhu59t0IfaezfygNvZekjgUObeOxzDvoI7ej2Hf4QjD6COrFxZz4hpY9wzm3ZyY/P6SOQ05v19vPH9yt/8efH+5U/jtauvIyvfvHGEeLZxd2p8K0sffh0fV/qfGVPH95U2ZGrzxz3eP7woOILteaPfTg/hqu7BZV/CUYfA1UfPj8TTKLFy7J+HBwe/TWaeZOTgz56ajftmu9WHvH+pbWmr8O2zxwcIU21Hm/bk6Pg/Kiuz6uux7sVzo+6us2z01tZ+qil5yR73FbucYu5ovNrrHccBYmc0P/0HfMJKXeZo4ZMbMzJUXB+7DHwhTTyuxXOj5fGjmjwF2/0sWH4cMZ/Kzt8BD55GMv4OMzHIFxxMpCRD6SPeEQ1N2WYk5Nj4Wcuo7iagK84zNl0OvO2dndxmL8Z9eFw1b6eOe7N8/zhMIvC48lRuB1ZXZ6X6TcO8z24Kpwv0O9tZZHy/uI8i8L1yVGEmOMhUVYUIA6LM809Aq0lRhwWaqYbYq0iwDPHStxHkFhlWKCTYxFuxEXEy44XhwUcdLgLLkLGYaHGHehSV6LGYUGGHuIilcBxmPvRO7+8l+K9W3nk8P1L9CyK2CdHkWMnHMoQhznrw9XFXJHhtnJv+C0mTRmW5uRwIlMZli+OgduTrAzLF4cN2qR8ZVjKOKz7VqUsw7LGYR03LGsZljgO67Jticuw3HFY483LXYalj6Od9GXYDHG02MUZyjCz/wAIUtCedr9OiAAAAABJRU5ErkJggg==">
+<link rel="apple-touch-icon" href="icon.png">
 <style>
   :root {
     --cream: #FFFDF8;
@@ -685,6 +683,10 @@
       <span class="info-row-label">Phosphorus</span>
       <span class="info-row-value" id="info-p"></span>
     </div>
+    <div class="info-row">
+      <span class="info-row-label">Blood Sugar</span>
+      <span class="info-row-value" id="info-sugar"></span>
+    </div>
   </div>
 </div>
 
@@ -783,7 +785,7 @@
     {name:"Chicken thighs", tier:"moderate", flags:["heart"], na:"Low", k:"Moderate", p:"Moderate"},
     {name:"Tuna (no/low salt added)", tier:"moderate", flags:["heart"], na:"Moderate", k:"Moderate", p:"Moderate"},
     {name:"Deli turkey (no salt added)", tier:"moderate", na:"Low", k:"Low", p:"Low"},
-    {name:"Whole eggs", tier:"moderate", na:"Low", k:"Low", p:"Moderate"},
+    {name:"Whole eggs", tier:"moderate", na:"Low", k:"Low", p:"High"},
     {name:"Mushrooms", tier:"moderate", na:"Low", k:"Moderate", p:"Low"},
     {name:"Broccoli", tier:"moderate", na:"Low", k:"High", p:"High"},
     {name:"Snap peas", tier:"moderate", na:"Low", k:"Moderate", p:"Low"},
@@ -946,6 +948,8 @@
     setLevel('info-na', entry.na || 'Moderate');
     setLevel('info-k', entry.k || 'Moderate');
     setLevel('info-p', entry.p || 'Moderate');
+    const sugarLevel = (entry.flags || []).includes('sugar') ? 'High' : 'Low';
+    setLevel('info-sugar', sugarLevel);
     document.getElementById('info-overlay').classList.add('show');
   }
 
