@@ -611,13 +611,19 @@
     <div class="group">
       <div class="group-title">Proteins</div>
       <div class="items">
-        <span class="item">Shrimp<span class="badge heart">!</span></span><span class="item">Salmon</span><span class="item">Lean ground beef</span><span class="item">Chicken thighs</span><span class="item">Tuna (no/low salt added)<span class="badge heart">!</span></span><span class="item">Deli turkey (no salt added)</span><span class="item">Whole eggs</span>
+        <span class="item">Shrimp (fresh, untreated)</span><span class="item">Salmon</span><span class="item">Lean ground beef</span><span class="item">Lean sirloin steak</span><span class="item">Pork chops</span><span class="item">Pork tenderloin</span><span class="item">Chicken thighs</span><span class="item">Tuna (no/low salt added)<span class="badge heart">!</span></span><span class="item">Deli turkey (no salt added)</span><span class="item">Whole eggs</span>
       </div>
     </div>
     <div class="group">
       <div class="group-title">Vegetables</div>
       <div class="items">
         <span class="item">Mushrooms</span><span class="item">Corn</span><span class="item">Broccoli</span><span class="item">Snap peas</span><span class="item">Green peas</span><span class="item">Brussels sprouts</span><span class="item">Kale</span>
+      </div>
+    </div>
+    <div class="group">
+      <div class="group-title">Grains</div>
+      <div class="items">
+        <span class="item">Oatmeal (plain, made with water)</span><span class="item">Whole grain bread</span><span class="item">Brown rice</span><span class="item">Wild rice</span><span class="item">Quinoa</span>
       </div>
     </div>
     <div class="group">
@@ -654,7 +660,7 @@
     <div class="group">
       <div class="group-title">Proteins</div>
       <div class="items">
-        <span class="item">Chicken apple sausage<span class="badge heart">!</span></span>
+        <span class="item">Chicken apple sausage<span class="badge heart">!</span></span><span class="item">Shrimp (frozen, treated with phosphates)<span class="badge heart">!</span></span><span class="item">Sardines<span class="badge heart">!</span></span>
       </div>
     </div>
     <div class="group">
@@ -748,7 +754,7 @@
     {name:"Egg whites", tier:"daily", na:"Low", k:"Low", p:"Low"},
     {name:"Liquid egg whites", tier:"daily", na:"Low", k:"Low", p:"Low"},
     {name:"Cauliflower", tier:"daily", na:"Low", k:"Low", p:"Low"},
-    {name:"Corn", tier:"moderate", na:"Low", k:"Low", p:"High"},
+    {name:"Corn", tier:"moderate", na:"Low", k:"Low", p:"Moderate"},
     {name:"Cabbage", tier:"daily", na:"Low", k:"Low", p:"Low"},
     {name:"Green beans", tier:"daily", na:"Low", k:"Low", p:"Low"},
     {name:"Zucchini", tier:"daily", na:"Low", k:"Low", p:"Low"},
@@ -826,18 +832,28 @@
     {name:"Sugar-free gelatin", tier:"daily", na:"Low", k:"Low", p:"Low"},
 
     // Sometimes
-    {name:"Shrimp", tier:"moderate", flags:["heart"], na:"Moderate", k:"Moderate", p:"High"},
+    {name:"Shrimp (fresh, untreated)", tier:"moderate", na:"Moderate", k:"Low", p:"Moderate", note:"Fresh shrimp is actually a solid kidney-diet protein — comparable to or lower than chicken breast on phosphorus. The catch is frozen shrimp: much of it is treated with sodium tripolyphosphate, which spikes both sodium and phosphorus. Check the bag — if it lists that or similar phosphate additives, treat it like the frozen/treated entry instead."},
+    {name:"Shrimp (frozen, treated with phosphates)", tier:"occasional", flags:["heart"], na:"High", k:"Low", p:"High", note:"Sodium tripolyphosphate and similar additives, common in frozen shrimp, meaningfully raise both sodium and phosphorus. Untreated fresh shrimp is a much better bet if it's available."},
+    {name:"Sardines", tier:"occasional", flags:["heart"], na:"High", k:"High", p:"High", note:"High across the board — canned sardines often include the bones, which adds even more phosphorus and calcium on top. A small portion, not a regular habit."},
     {name:"Salmon", tier:"moderate", na:"Low", k:"Moderate", p:"Moderate"},
     {name:"Lean ground beef", tier:"moderate", na:"Low", k:"Low", p:"Moderate", note:"Sodium is actually low here — the main thing to watch with beef is saturated fat, not salt."},
+    {name:"Lean sirloin steak", tier:"moderate", na:"Low", k:"Moderate", p:"Moderate", note:"Sodium is genuinely low, but this cut runs a bit higher in potassium than people expect from beef — a normal 3oz portion is the way to keep it reasonable."},
+    {name:"Pork chops", tier:"moderate", na:"Low", k:"Moderate", p:"Moderate", note:"Similar profile to lean beef — low sodium, but potassium runs a bit higher than expected. A normal 3oz portion keeps it reasonable."},
+    {name:"Pork tenderloin", tier:"moderate", na:"Low", k:"Moderate", p:"Moderate", note:"Very lean cut — genuinely low sodium (about 48mg per 3oz), with a similar potassium/phosphorus profile to pork chops."},
     {name:"Chicken thighs", tier:"moderate", na:"Low", k:"Moderate", p:"Moderate", note:"Sodium is actually low here — the main thing to watch with thigh meat is saturated fat, not salt."},
     {name:"Tuna (no/low salt added)", tier:"moderate", flags:["heart"], na:"Moderate", k:"Moderate", p:"Moderate"},
     {name:"Deli turkey (no salt added)", tier:"moderate", na:"Low", k:"Low", p:"Low", note:"Numbers look great, but cured/processed meats can have added phosphate that isn't required on the label — kept cautious just in case."},
-    {name:"Whole eggs", tier:"moderate", na:"Low", k:"Low", p:"High"},
+    {name:"Whole eggs", tier:"moderate", na:"Low", k:"Low", p:"Moderate"},
     {name:"Mushrooms", tier:"moderate", na:"Low", k:"Moderate", p:"Low"},
-    {name:"Broccoli", tier:"moderate", na:"Low", k:"High", p:"High"},
+    {name:"Broccoli", tier:"moderate", na:"Low", k:"Moderate", p:"Low", note:"A more specific renal-diet source (DaVita) puts this at medium potassium and genuinely low phosphorus — better than an earlier general list suggested."},
     {name:"Snap peas", tier:"moderate", na:"Low", k:"Moderate", p:"Low"},
     {name:"Green peas", tier:"moderate", na:"Low", k:"Low", p:"High"},
-    {name:"Brussels sprouts", tier:"moderate", na:"Low", k:"High", p:"High"},
+    {name:"Oatmeal (plain, made with water)", tier:"moderate", na:"Low", k:"Moderate", p:"Moderate", note:"The phosphorus here is plant-based, so only about 30-60% of it actually gets absorbed — less of a concern than the raw number suggests. Make with water, not milk, to keep it lower."},
+    {name:"Whole grain bread", tier:"moderate", na:"Moderate", k:"Moderate", p:"Moderate", note:"Current kidney-diet guidance actually favors whole grain over white — the extra fiber is a real benefit, and this phosphorus is poorly absorbed. Sodium is similar to white bread either way, so check the label. Make sure it says 'whole wheat' or 'whole grain,' not just 'wheat,' which can be nutritionally the same as white."},
+    {name:"Brown rice", tier:"moderate", na:"Low", k:"Moderate", p:"Moderate", note:"Higher than white rice, but current guidance considers it a healthy option in reasonable portions — the phosphorus is plant-based and only partly absorbed."},
+    {name:"Wild rice", tier:"moderate", na:"Low", k:"Moderate", p:"Moderate", note:"Similar profile to brown rice — a reasonable portion works fine as part of a kidney-friendly diet."},
+    {name:"Quinoa", tier:"moderate", na:"Low", k:"Moderate", p:"Moderate", note:"Runs a bit higher than other whole grains, so a half-cup portion is a better bet than a full cup."},
+    {name:"Brussels sprouts", tier:"moderate", na:"Low", k:"High", p:"Low", note:"Potassium is genuinely high here (similar to a banana), but phosphorus turns out to be low, not high as an earlier general list suggested."},
     {name:"Kale", tier:"moderate", na:"Low", k:"High", p:"Low"},
     {name:"Pecans", tier:"moderate", na:"Low", k:"Low", p:"Low", note:"Minerals are genuinely low — this one's here mainly because nuts are easy to overeat, not a kidney concern."},
     {name:"Macadamia nuts", tier:"moderate", na:"Low", k:"Low", p:"Low", note:"Minerals are genuinely low — this one's here mainly because nuts are easy to overeat, not a kidney concern."},
